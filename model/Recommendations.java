@@ -11,7 +11,6 @@ public class Recommendations {
 		
 
 		public Recommendations(EndUsers endusers, Address address, double rating, double petfriendly, double childfriendly ) {
-			//Grishma Thakkar
 			this.endusers = users;
 			this.address = address;
 			this.childfriendly=childfriendly;
