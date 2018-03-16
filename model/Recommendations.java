@@ -11,7 +11,7 @@ public class Recommendations {
 		
 
 		public Recommendations(EndUsers endusers, Address address, double rating, double petfriendly, double childfriendly ) {
-			this.endusers = users;
+			this.endusers = endusers;
 			this.address = address;
 			this.childfriendly=childfriendly;
 			this.petfriendly=petfriendly;
