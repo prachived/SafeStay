@@ -14,6 +14,7 @@ public class Reviews {
 	}
 
 	public Reviews(Date Created, String content, double Rating, Users users, Restaurants restaurants) {
+	
 		this.ReviewId = ReviewId;
 		this.content = content;
 		this.endusers = endusers;
@@ -31,5 +32,30 @@ public class Reviews {
 		this.ReviewId = reviewId;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public EndUsers getEndusers() {
+		return endusers;
+	}
+
+	public void setEndusers(EndUsers endusers) {
+		this.endusers = endusers;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	
 }
+
