@@ -10,7 +10,7 @@ public class Recommendations {
 		
 		
 
-		public Recommendations(EndUsers endusers, Address address, double rating, double petfriendly, double childfriendly ) {
+		public Recommendations( double rating, double petfriendly, double childfriendly, EndUsers endusers, Address address ) {
 			this.endusers = endusers;
 			this.address = address;
 			this.childfriendly=childfriendly;
@@ -22,7 +22,7 @@ public class Recommendations {
 			this.recommendationId = recommendationId;
 		}
 
-		public Recommendations(int recommendationId, EndUsers endusers, Address address, double rating, double petfriendly, double childfriendly ) {
+		public Recommendations(int recommendationId, double rating, double petfriendly, double childfriendly, EndUsers endusers, Address address) {
 			this.recommendationId = recommendationId;
 			this.Endusers = endusers;
 			this.address = address;
@@ -82,4 +82,7 @@ public class Recommendations {
 	
 
 	}
+
+
+
 
