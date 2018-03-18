@@ -224,6 +224,7 @@ public class Inserter {
 		Statement statement = null;
 		try {
 			conn = connectionManager.getConnection();
+			conn.setAutoCommit(true);
 			statement = conn.createStatement();
 			statement.executeUpdate(sql);
 

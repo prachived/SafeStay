@@ -2,7 +2,7 @@ package SafeStay.model;
 
 import java.sql.Date;
 
-public class EndUsers extends Users{
+public class EndUsers extends Users {
 	protected String userName;
 	protected Date dateOfBirth;
 
@@ -11,6 +11,10 @@ public class EndUsers extends Users{
 		super(userName, password, firstName, lastName, age, email, phone);
 		this.userName = userName;
 		this.dateOfBirth = dob;
+	}
+
+	public EndUsers(String userName) {
+		super(userName);
 	}
 
 	public String getUserName() {
@@ -28,6 +32,5 @@ public class EndUsers extends Users{
 	public void setDateOfBirth(Date dob) {
 		dateOfBirth = dob;
 	}
-
 
 }

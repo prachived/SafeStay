@@ -36,8 +36,7 @@ public class IncidentsDao {
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		ResultSet resultKey = null;
-		
-		
+
 		try {
 			connection = connectionManager.getConnection();
 			insertStmt = connection.prepareStatement(insertIncident, Statement.RETURN_GENERATED_KEYS);

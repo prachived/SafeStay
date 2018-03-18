@@ -22,6 +22,10 @@ public class Users {
 		this.phone = phone;
 	}
 
+	public Users(String userName) {
+		this.userName = userName;
+	}
+
 	// getters and setters of the variables of the class
 	public String getUserName() {
 		return userName;

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 import SafeStay.model.*;
 
-public class AdministratorsDao {
+public class AdministratorsDao extends UsersDao {
 	protected ConnectionManager connectionManager;
 	// Single pattern: instantiation is limited to one object.
 	private static AdministratorsDao instance = null;
@@ -105,6 +105,8 @@ public class AdministratorsDao {
 			deleteStmt = connection.prepareStatement(deleteUser);
 			deleteStmt.setString(1, admin.getUserName());
 			deleteStmt.executeUpdate();
+
+			super.delete(admin);
 			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
