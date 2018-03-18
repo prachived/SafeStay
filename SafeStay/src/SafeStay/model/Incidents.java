@@ -1,10 +1,10 @@
-package safety.model;
+package SafeStay.model;
 
 import java.util.Date;
 
 public class Incidents {
-	protected String incidentId;
-	protected Offenses offense;
+	protected int incidentId;
+	protected Offense offense;
 	protected String district;
 	protected int reportingArea;
 	protected Shootings shooting;
@@ -12,7 +12,7 @@ public class Incidents {
 	protected String dayOfWeek;
 	protected int hour;
 	protected UCRs ucr;
-	protected Addresses address;
+	protected Address address;
 	
 	public enum Shootings{
 		Y,
@@ -22,9 +22,9 @@ public class Incidents {
 		PartOne, PartTwo, PartThree
 	}
 	
-	public Incidents(String incidentId, Offenses offense, String district,
+	public Incidents(int incidentId, Offense offense, String district,
 			int reportingArea, Shootings shooting, Date occuredOnDate,
-			String dayOfWeek, int hour, UCRs ucr, Addresses address) {
+			String dayOfWeek, int hour, UCRs ucr, Address address) {
 		this.incidentId = incidentId;
 		this.offense = offense;
 		this.district = district;
@@ -37,23 +37,23 @@ public class Incidents {
 		this.address = address;
 	}
 	
-	public Incidents(String incidentId) {
+	public Incidents(int incidentId) {
 		this.incidentId = incidentId;
 	}
 	
-	public String getIncidentId() {
+	public int getIncidentId() {
 		return incidentId;
 	}
 
-	public void setIncidentId(String incidentId) {
+	public void setIncidentId(int incidentId) {
 		this.incidentId = incidentId;
 	}
 	
-	public Offenses getOffense() {
+	public Offense getOffense() {
 		return offense;
 	}
 
-	public void setOffense(Offenses offense) {
+	public void setOffense(Offense offense) {
 		this.offense = offense;
 	}
 
@@ -113,11 +113,11 @@ public class Incidents {
 		this.ucr = ucr;
 	}
 
-	public Addresses getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(Addresses address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 }

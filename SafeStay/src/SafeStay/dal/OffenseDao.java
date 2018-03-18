@@ -1,27 +1,28 @@
-package safety.dal;
+package SafeStay.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import safety.model.*;
+import SafeStay.model.Offense;
 
-public class OffensesDao {
+
+public class OffenseDao {
 	protected ConnectionManager connectionManager;
 
-	private static OffensesDao instance = null;
-	protected OffensesDao() {
+	private static OffenseDao instance = null;
+	protected OffenseDao() {
 		connectionManager = new ConnectionManager();
 	}
-	public static OffensesDao getInstance() {
+	public static OffenseDao getInstance() {
 		if(instance == null) {
-			instance = new OffensesDao();
+			instance = new OffenseDao();
 		}
 		return instance;
 	}
 
-	public Offenses create(Offenses offense) throws SQLException {
+	public Offense create(Offense offense) throws SQLException {
 		String insertOffense =
 			"INSERT INTO Offenses(OffenseCode,Description,CodeGroup) " +
 			"VALUES(?,?,?);";
@@ -32,7 +33,7 @@ public class OffensesDao {
 			insertStmt = connection.prepareStatement(insertOffense);
 			insertStmt.setInt(1, offense.getOffenceCode());
 			insertStmt.setString(2, offense.getDescription());
-			insertStmt.setString(3, offense.getCodeGroup());
+//			insertStmt.setString(3, offense.getCodeGroup());
 			insertStmt.executeUpdate();
 			return offense;
 		} catch (SQLException e) {
@@ -48,7 +49,7 @@ public class OffensesDao {
 		}
 	}
 
-	public Offenses delete(Offenses offense) throws SQLException {
+	public Offense delete(Offense offense) throws SQLException {
 		String deleteOffense = "DELETE FROM Offense WHERE OffenseCode=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
@@ -71,7 +72,7 @@ public class OffensesDao {
 		}
 	}
 
-	public Offenses getOffenseByOffenseCode(int offenseCode) throws SQLException {
+	public Offense getOffenseByOffenseCode(int offenseCode) throws SQLException {
 		String selectOffense =
 			"SELECT OffenseCode,Description,CodeGroup " +
 			"FROM Offenses " +
@@ -87,8 +88,8 @@ public class OffensesDao {
 			if(results.next()) {
 				int resultOffenseCode = results.getInt("OffenseCode");
 				String description = results.getString("Description");
-				String codeGroup = results.getString("CodeGroup");
-				Offenses offense = new Offenses(resultOffenseCode,description,codeGroup);
+//				String codeGroup = results.getString("CodeGroup");
+				Offense offense = new Offense(resultOffenseCode,description);
 				return offense;
 			}
 		} catch (SQLException e) {

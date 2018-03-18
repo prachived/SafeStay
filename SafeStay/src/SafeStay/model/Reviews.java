@@ -1,4 +1,4 @@
-package StaySafe.model;
+package SafeStay.model;
 
 public class Reviews {
 	protected int ReviewId;
@@ -13,13 +13,12 @@ public class Reviews {
 		this.address = address;
 	}
 
-	public Reviews(Date Created, String content, double Rating, Users users, Restaurants restaurants) {
-	
-		this.ReviewId = ReviewId;
+	public Reviews(String content, EndUsers endusers, Address address) {
 		this.content = content;
 		this.endusers = endusers;
 		this.address = address;
 	}
+
 	public Reviews(int reviewId) {
 		this.ReviewId = reviewId;
 	}
@@ -56,6 +55,4 @@ public class Reviews {
 		this.address = address;
 	}
 
-	
 }
-

@@ -1,23 +1,20 @@
-package safety.model;
+package SafeStay.model;
 
-public class Offenses {
+public class Offense {
 	protected int offenceCode;
 	protected String description;
-	protected String codeGroup;
 	
-	public Offenses(int offenceCode, String description, String codeGroup) {
+	public Offense(int offenceCode, String description) {
 		this.offenceCode = offenceCode;
 		this.description = description;
-		this.codeGroup = codeGroup;
 	}
 	
-	public Offenses(int offenceCode) {
+	public Offense(int offenceCode) {
 		this.offenceCode = offenceCode;
 	}
 	
-	public Offenses(String description, String codeGroup) {
+	public Offense(String description) {
 		this.description = description;
-		this.codeGroup = codeGroup;
 	}
 	
 	public int getOffenceCode() {
@@ -36,12 +33,12 @@ public class Offenses {
 		this.description = description;
 	}
 
-	public String getCodeGroup() {
-		return codeGroup;
-	}
-
-	public void setCodeGroup(String codeGroup) {
-		this.codeGroup = codeGroup;
-	}
+//	public String getCodeGroup() {
+//		return codeGroup;
+//	}
+//
+//	public void setCodeGroup(String codeGroup) {
+//		this.codeGroup = codeGroup;
+//	}
 
 }

@@ -1,9 +1,12 @@
-package StaySafe.dal;
+package SafeStay.dal;
+
 import java.sql.*;
 
 import java.util.*;
 
-import StaySafe.model.*;
+import SafeStay.model.Address;
+import SafeStay.model.EndUsers;
+import SafeStay.model.Reviews;
 
 public class ReviewsDao {
 	protected ConnectionManager connectionManager;
@@ -20,11 +23,10 @@ public class ReviewsDao {
 		}
 		return instance;
 	}
-	
+
 	public Reviews create(Reviews review) throws SQLException {
-		//Grishma Thakkar
-		String createReview = "INSERT INTO Reviews(Content, UserName, Location) "
-				+ "VALUES(?,?,?);";
+		// Grishma Thakkar
+		String createReview = "INSERT INTO Reviews(Content, UserName, Location) " + "VALUES(?,?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		ResultSet resultKey = null;
@@ -80,7 +82,7 @@ public class ReviewsDao {
 				String rContent = results.getString("Content");
 				String rUserName = results.getString("UserName");
 				String rlocation = results.getString("Location");
-				EndUsers renduser = endusersDao.getUserByUserName(rUserName);
+				EndUsers renduser = endusersDao.getEndUserByUserName(rUserName);
 				Address raddress = addressDao.getAddressByLocation(rlocation);
 				Reviews rev = new Reviews(rReviewId, rContent, renduser, raddress);
 				return rev;
@@ -121,7 +123,7 @@ public class ReviewsDao {
 				String rContent = results.getString("Content");
 				String rUserName = results.getString("UserName");
 				String rlocation = results.getString("Location");
-				EndUsers renduser = endusersDao.getUserByUserName(rUserName);
+				EndUsers renduser = endusersDao.getEndUserByUserName(rUserName);
 				Address raddress = addressDao.getAddressByLocation(rlocation);
 				Reviews rev = new Reviews(rReviewId, rContent, renduser, raddress);
 				revList.add(rev);
@@ -164,7 +166,7 @@ public class ReviewsDao {
 				String rContent = results.getString("Content");
 				String rUserName = results.getString("UserName");
 				String rlocation = results.getString("Location");
-				EndUsers renduser = endusersDao.getUserByUserName(rUserName);
+				EndUsers renduser = endusersDao.getEndUserByUserName(rUserName);
 				Address raddress = addressDao.getAddressByLocation(rlocation);
 				Reviews rev = new Reviews(rReviewId, rContent, renduser, raddress);
 				revList.add(rev);
@@ -187,8 +189,7 @@ public class ReviewsDao {
 		return revList;
 
 	}
-	
-	
+
 	public Reviews delete(Reviews review) throws SQLException {
 		String delReview = "DELETE FROM Reviews WHERE ReviewId=?;";
 		Connection connection = null;
@@ -204,13 +205,12 @@ public class ReviewsDao {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(deleteStmt != null) {
+			if (deleteStmt != null) {
 				deleteStmt.close();
 			}
 		}
 	}
 }
-
