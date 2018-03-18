@@ -26,7 +26,7 @@ public class AddressDao {
 
 	public Address create(Address address) throws SQLException {
 		// Grishma Thakkar
-		String createAddress = "INSERT INTO Address(Location,Street,FirstName, Longitude, Latitude) VALUES(?,?,?,?);";
+		String createAddress = "INSERT INTO Address(Location,Street,Longitude, Latitude) VALUES(?,?,?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		try {

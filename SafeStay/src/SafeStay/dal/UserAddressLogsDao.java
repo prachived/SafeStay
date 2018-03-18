@@ -135,7 +135,7 @@ public class UserAddressLogsDao {
 
 	public List<UserAddressLogs> getUALogsByUserName(String userName) throws SQLException {
 		List<UserAddressLogs> userAddressLogsList = new ArrayList<UserAddressLogs>();
-		String selectUserAddressLog = "SELECT User_address_id,UserName,Location,Start_date,End_date "
+		String selectUserAddressLog = "SELECT User_address_id,User_address_log.UserName,User_address_log.Location,Start_date,End_date "
 				+ "FROM User_address_log INNER JOIN EndUsers " + "  ON User_address_log.UserName = EndUsers.UserName "
 				+ "WHERE User_address_log.UserName=?;";
 		Connection connection = null;
@@ -178,7 +178,7 @@ public class UserAddressLogsDao {
 
 	public List<UserAddressLogs> getUALogsByLocation(String location) throws SQLException {
 		List<UserAddressLogs> userAddressLogsList = new ArrayList<UserAddressLogs>();
-		String selectUserAddressLog = "SELECT User_address_id,UserName,Location,Start_date,End_date "
+		String selectUserAddressLog = "SELECT User_address_id,User_address_log.UserName,User_address_log.Location,Start_date,End_date "
 				+ "FROM User_address_log INNER JOIN Address " + "  ON User_address_log.Location = Address.Location "
 				+ "WHERE User_address_log.Location=?;";
 		Connection connection = null;

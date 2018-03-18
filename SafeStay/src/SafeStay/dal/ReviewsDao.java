@@ -26,7 +26,7 @@ public class ReviewsDao {
 
 	public Reviews create(Reviews review) throws SQLException {
 		// Grishma Thakkar
-		String createReview = "INSERT INTO Reviews(Content, UserName, Location) " + "VALUES(?,?,?);";
+		String createReview = "INSERT INTO Review(Content, UserName, Location) " + "VALUES(?,?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		ResultSet resultKey = null;
@@ -65,7 +65,7 @@ public class ReviewsDao {
 	}
 
 	public Reviews getReviewById(int reviewId) throws SQLException {
-		String selReview = "SELECT * " + "FROM Reviews " + "WHERE Reviewid=?;";
+		String selReview = "SELECT * " + "FROM Review " + "WHERE Reviewid=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -106,7 +106,7 @@ public class ReviewsDao {
 
 	public List<Reviews> getReviewsByUserName(String userName) throws SQLException {
 		List<Reviews> revList = new ArrayList<>();
-		String selectReview = "SELECT * " + "FROM Reviews " + "WHERE UserName=?;";
+		String selectReview = "SELECT * " + "FROM Review " + "WHERE UserName=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -149,7 +149,7 @@ public class ReviewsDao {
 
 	public List<Reviews> getReviewsBylocation(String location) throws SQLException {
 		List<Reviews> revList = new ArrayList<>();
-		String selectReview = "SELECT * " + "FROM Reviews " + "WHERE location=?;";
+		String selectReview = "SELECT * " + "FROM Review " + "WHERE location=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -191,7 +191,7 @@ public class ReviewsDao {
 	}
 
 	public Reviews delete(Reviews review) throws SQLException {
-		String delReview = "DELETE FROM Reviews WHERE ReviewId=?;";
+		String delReview = "DELETE FROM Review WHERE ReviewId=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
 		try {
@@ -199,7 +199,6 @@ public class ReviewsDao {
 			deleteStmt = connection.prepareStatement(delReview);
 			deleteStmt.setInt(1, review.getReviewId());
 			deleteStmt.executeUpdate();
-			// Return null so the caller can no longer operate on the Persons instance.
 			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();

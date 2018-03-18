@@ -30,7 +30,7 @@ public class RequestsDao {
 	}
 
 	public Requests create(Requests request) throws SQLException {
-		String insertRequest = "INSERT INTO Requests(RequestId,UserName,Location) " + "VALUES(?,?,?);";
+		String insertRequest = "INSERT INTO Requests(UserName,Location) " + "VALUES(?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		ResultSet resultKey = null;

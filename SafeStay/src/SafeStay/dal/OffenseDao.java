@@ -24,8 +24,8 @@ public class OffenseDao {
 
 	public Offense create(Offense offense) throws SQLException {
 		String insertOffense =
-			"INSERT INTO Offenses(OffenseCode,Description,CodeGroup) " +
-			"VALUES(?,?,?);";
+			"INSERT INTO Offense(OffenseCode,Description) " +
+			"VALUES(?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		try {
@@ -74,8 +74,8 @@ public class OffenseDao {
 
 	public Offense getOffenseByOffenseCode(int offenseCode) throws SQLException {
 		String selectOffense =
-			"SELECT OffenseCode,Description,CodeGroup " +
-			"FROM Offenses " +
+			"SELECT OffenseCode,Description " +
+			"FROM Offense " +
 			"WHERE OffenseCode=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
@@ -88,7 +88,6 @@ public class OffenseDao {
 			if(results.next()) {
 				int resultOffenseCode = results.getInt("OffenseCode");
 				String description = results.getString("Description");
-//				String codeGroup = results.getString("CodeGroup");
 				Offense offense = new Offense(resultOffenseCode,description);
 				return offense;
 			}

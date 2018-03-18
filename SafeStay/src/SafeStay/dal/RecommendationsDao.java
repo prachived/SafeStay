@@ -1,7 +1,6 @@
 package SafeStay.dal;
 
 import java.sql.*;
-
 import java.util.*;
 
 import SafeStay.model.Address;
@@ -25,7 +24,7 @@ public class RecommendationsDao {
 	}
 
 	public Recommendations create(Recommendations recommendation) throws SQLException {
-		String insertRec = "INSERT INTO Recommendations ( Rating, Petfriendly, Childfriendly, UserName, Location) "
+		String insertRec = "INSERT INTO Recommendation ( Rating, Petfriendly, Childfriendly, UserName, Location) "
 				+ "VALUES(?,?,?,?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
@@ -34,7 +33,7 @@ public class RecommendationsDao {
 			connection = connectionManager.getConnection();
 			insertStmt = connection.prepareStatement(insertRec, Statement.RETURN_GENERATED_KEYS);
 			insertStmt.setDouble(1, recommendation.getRating());
-			insertStmt.setDouble(3, recommendation.getPetfriendly());
+			insertStmt.setDouble(2, recommendation.getPetfriendly());
 			insertStmt.setDouble(3, recommendation.getChildfriendly());
 			insertStmt.setString(4, recommendation.getEndusers().getUserName());
 			insertStmt.setString(5, recommendation.getAddress().getLocation());
@@ -67,7 +66,7 @@ public class RecommendationsDao {
 	}
 
 	public Recommendations getRecommendationById(int recomid) throws SQLException {
-		String selReview = "SELECT * " + "FROM Recommendations " + "WHERE recomid=?;";
+		String selReview = "SELECT * " + "FROM Recommendation " + "WHERE recommendationId=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -112,7 +111,7 @@ public class RecommendationsDao {
 
 	public List<Recommendations> getRecommendationsByLocation(String location) throws SQLException {
 		List<Recommendations> recomList = new ArrayList<>();
-		String selRecommendations = "SELECT * " + "FROM Recommendations " + "WHERE location=?;";
+		String selRecommendations = "SELECT * " + "FROM Recommendation " + "WHERE location=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -158,7 +157,7 @@ public class RecommendationsDao {
 
 	public List<Recommendations> getRecommendationsByUserName(String userName) throws SQLException {
 		List<Recommendations> recomList = new ArrayList<>();
-		String selReview = "SELECT * " + "FROM Recommendations " + "WHERE UserName=?;";
+		String selReview = "SELECT * " + "FROM Recommendation " + "WHERE UserName=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -202,8 +201,36 @@ public class RecommendationsDao {
 
 	}
 
+	public Recommendations updateRating(Recommendations recommendation, Double newRating) throws SQLException {
+		String updateRecommendation = "UPDATE Recommendation SET Rating=? WHERE RecommendationId=?;";
+		Connection connection = null;
+		PreparedStatement updateStmt = null;
+		try {
+			connection = connectionManager.getConnection();
+			updateStmt = connection.prepareStatement(updateRecommendation);
+			updateStmt.setDouble(1, newRating);
+			updateStmt.setInt(2, recommendation.getRecommendationId());
+
+			updateStmt.executeUpdate();
+
+			// Update the Expiration param before returning to the caller.
+			recommendation.setRating(newRating);
+			return recommendation;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (connection != null) {
+				connection.close();
+			}
+			if (updateStmt != null) {
+				updateStmt.close();
+			}
+		}
+	}
+
 	public Recommendations delete(Recommendations recommendation) throws SQLException {
-		String delRecom = "DELETE FROM Recommendations WHERE RecommendationId=?;";
+		String delRecom = "DELETE FROM Recommendation WHERE RecommendationId=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
 		try {

@@ -4,43 +4,6 @@ import java.util.Date;
 
 public class Incidents {
 	protected int incidentId;
-	protected Offense offense;
-	protected String district;
-	protected int reportingArea;
-	protected Shootings shooting;
-	protected Date occuredOnDate;
-	protected String dayOfWeek;
-	protected int hour;
-	protected UCRs ucr;
-	protected Address address;
-	
-	public enum Shootings{
-		Y,
-	}
-	
-	public enum UCRs{
-		PartOne, PartTwo, PartThree
-	}
-	
-	public Incidents(int incidentId, Offense offense, String district,
-			int reportingArea, Shootings shooting, Date occuredOnDate,
-			String dayOfWeek, int hour, UCRs ucr, Address address) {
-		this.incidentId = incidentId;
-		this.offense = offense;
-		this.district = district;
-		this.reportingArea = reportingArea;
-		this.shooting = shooting;
-		this.occuredOnDate = occuredOnDate;
-		this.dayOfWeek = dayOfWeek;
-		this.hour = hour;
-		this.ucr = ucr;
-		this.address = address;
-	}
-	
-	public Incidents(int incidentId) {
-		this.incidentId = incidentId;
-	}
-	
 	public int getIncidentId() {
 		return incidentId;
 	}
@@ -48,7 +11,7 @@ public class Incidents {
 	public void setIncidentId(int incidentId) {
 		this.incidentId = incidentId;
 	}
-	
+
 	public Offense getOffense() {
 		return offense;
 	}
@@ -71,14 +34,6 @@ public class Incidents {
 
 	public void setReportingArea(int reportingArea) {
 		this.reportingArea = reportingArea;
-	}
-
-	public Shootings getShooting() {
-		return shooting;
-	}
-
-	public void setShooting(Shootings shooting) {
-		this.shooting = shooting;
 	}
 
 	public Date getOccuredOnDate() {
@@ -105,14 +60,6 @@ public class Incidents {
 		this.hour = hour;
 	}
 
-	public UCRs getUcr() {
-		return ucr;
-	}
-
-	public void setUcr(UCRs ucr) {
-		this.ucr = ucr;
-	}
-
 	public Address getAddress() {
 		return address;
 	}
@@ -120,4 +67,72 @@ public class Incidents {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	public Shootings getShootings() {
+		return shootings;
+	}
+
+	public void setShootings(Shootings shootings) {
+		this.shootings = shootings;
+	}
+
+	public UCRs getUcRs() {
+		return ucRs;
+	}
+
+	public void setUcRs(UCRs ucRs) {
+		this.ucRs = ucRs;
+	}
+
+	protected Offense offense;
+	protected String district;
+	protected int reportingArea;
+	protected Date occuredOnDate;
+	protected String dayOfWeek;
+	protected int hour;
+	protected Address address;
+	protected Shootings shootings;
+	protected UCRs ucRs;
+	
+	public enum Shootings{
+		Y,N
+	}
+	
+	public enum UCRs{
+		PartOne, PartTwo, PartThree
+	}
+	
+	public Incidents(int incidentId, Offense offense, String district,
+			int reportingArea, Shootings shooting, Date occuredOnDate,
+			String dayOfWeek, int hour, UCRs ucr, Address address) {
+		this.incidentId = incidentId;
+		this.offense = offense;
+		this.district = district;
+		this.reportingArea = reportingArea;
+		this.shootings = shooting;
+		this.occuredOnDate = occuredOnDate;
+		this.dayOfWeek = dayOfWeek;
+		this.hour = hour;
+		this.ucRs = ucr;
+		this.address = address;
+	}
+	
+	public Incidents(Offense offense, String district,
+			int reportingArea, Shootings shooting, Date occuredOnDate,
+			String dayOfWeek, int hour, UCRs ucr, Address address) {
+		this.offense = offense;
+		this.district = district;
+		this.reportingArea = reportingArea;
+		this.shootings = shooting;
+		this.occuredOnDate = occuredOnDate;
+		this.dayOfWeek = dayOfWeek;
+		this.hour = hour;
+		this.ucRs = ucr;
+		this.address = address;
+	}
+	
+	public Incidents(int incidentId) {
+		this.incidentId = incidentId;
+	}
+	
 }

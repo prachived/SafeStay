@@ -4,14 +4,14 @@ import java.sql.Timestamp;
 
 public class Maintains {
 
-	protected Users users;
+	protected Administrators administrators;
 
-	public Users getUsers() {
-		return users;
+	public Administrators getAdministrators() {
+		return administrators;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setAdministrators(Administrators administrators) {
+		this.administrators = administrators;
 	}
 
 	public Incidents getIncidents() {
@@ -33,14 +33,14 @@ public class Maintains {
 	protected Incidents incidents;
 	protected Timestamp created;
 
-	public Maintains(Users users, Incidents incidents, Timestamp created) {
-		this.users = users;
+	public Maintains(Administrators administrators, Incidents incidents, Timestamp created) {
+		this.administrators = administrators;
 		this.incidents = incidents;
 		this.created = created;
 	}
 
-	public Maintains(Users users) {
-		this.users = users;
+	public Maintains(Administrators administrators) {
+		this.administrators = administrators;
 	}
 
 }

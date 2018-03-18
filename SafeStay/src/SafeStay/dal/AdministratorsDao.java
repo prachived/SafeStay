@@ -54,7 +54,7 @@ public class AdministratorsDao {
 	}
 
 	public Administrators getAdministratorByUserName(String userName) throws SQLException {
-		String selectUser = "SELECT Users.UserName,Password,FirstName,LastName, Age,Email,Phone,LastLogin "
+		String selectUser = "SELECT Users.UserName,UserPassword,FirstName,LastName, Age,Email,Phone,LastLogin "
 				+ "FROM Administrators INNER JOIN Users " + "  ON  Administrators.UserName = Users.UserName "
 				+ "WHERE Administrators.UserName=?;";
 
@@ -68,7 +68,7 @@ public class AdministratorsDao {
 			results = selectStmt.executeQuery();
 			if (results.next()) {
 				String resultUserName = results.getString("UserName");
-				String resultpassword = results.getString("Password");
+				String resultpassword = results.getString("UserPassword");
 				String resultFirstName = results.getString("FirstName");
 				String resultLastName = results.getString("LastName");
 				int resultAge = results.getInt("Age");

@@ -51,7 +51,7 @@ public class Recommendations {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 

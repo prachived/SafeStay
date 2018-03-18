@@ -53,7 +53,7 @@ public class EndUsersDao {
 	}
 
 	public EndUsers getEndUserByUserName(String userName) throws SQLException {
-		String selectUser = "SELECT Users.UserName,Password,FirstName,LastName, Age,Email,Phone,DateOfBirth "
+		String selectUser = "SELECT Users.UserName,UserPassword,FirstName,LastName, Age,Email,Phone,DateOfBirth "
 				+ "FROM EndUsers INNER JOIN Users " + "  ON  EndUsers.UserName = Users.UserName "
 				+ "WHERE EndUsers.UserName=?;";
 		Connection connection = null;
@@ -66,7 +66,7 @@ public class EndUsersDao {
 			results = selectStmt.executeQuery();
 			if (results.next()) {
 				String resultUserName = results.getString("UserName");
-				String resultPassword = results.getString("Password");
+				String resultPassword = results.getString("UserPassword");
 				String resultFirstName = results.getString("FirstName");
 				String resultLastName = results.getString("LastName");
 				int resultAge = results.getInt("Age");

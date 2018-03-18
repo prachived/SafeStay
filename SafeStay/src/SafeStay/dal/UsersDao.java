@@ -25,7 +25,7 @@ public class UsersDao {
 	}
 
 	public Users create(Users user) throws SQLException {
-		String insertUser = "INSERT INTO Users(UserName,Password,FirstName,LastName, Age,Email,Phone) VALUES(?,?,?,?,?,?,?);";
+		String insertUser = "INSERT INTO Users(UserName,UserPassword,FirstName,LastName, Age,Email,Phone) VALUES(?,?,?,?,?,?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		try {
@@ -54,7 +54,7 @@ public class UsersDao {
 	}
 
 	public Users getUserByUserName(String userName) throws SQLException {
-		String selectUser = "SELECT UserName,Password,FirstName,LastName, Age,Email,Phone FROM Users WHERE UserName=?;";
+		String selectUser = "SELECT UserName,UserPassword,FirstName,LastName, Age,Email,Phone FROM Users WHERE UserName=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -72,7 +72,7 @@ public class UsersDao {
 			// Furthermore, you can retrieve fields by name and by type.
 			if (results.next()) {
 				String resultUserName = results.getString("UserName");
-				String password = results.getString("Password");
+				String password = results.getString("UserPassword");
 				String firstName = results.getString("FirstName");
 				String lastName = results.getString("LastName");
 				int age = results.getInt("Age");
@@ -97,6 +97,8 @@ public class UsersDao {
 		}
 		return null;
 	}
+	
+	
 
 	public Users delete(Users user) throws SQLException {
 		String deleteUser = "DELETE FROM Users WHERE UserName=?;";

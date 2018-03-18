@@ -32,24 +32,25 @@ public class IncidentsDao {
 
 	public Incidents create(Incidents incident) throws SQLException {
 		String insertIncident = "INSERT INTO Incidents(OffenseCode,District,ReportingArea,Shooting,OccuredOnDate,"
-				+ "DayOfWeek,Hours,UCR,Location) " + "VALUES(?,?,?,?,?,?,?,?,?,?);";
+				+ "DayOfWeek,Hours,UCR,Location) " + "VALUES(?,?,?,?,?,?,?,?,?);";
 		Connection connection = null;
 		PreparedStatement insertStmt = null;
 		ResultSet resultKey = null;
+		
+		
 		try {
 			connection = connectionManager.getConnection();
 			insertStmt = connection.prepareStatement(insertIncident, Statement.RETURN_GENERATED_KEYS);
 			insertStmt.setInt(1, incident.getOffense().getOffenceCode());
 			insertStmt.setString(2, incident.getDistrict());
 			insertStmt.setInt(3, incident.getReportingArea());
-			insertStmt.setString(4, incident.getShooting().name());
+			insertStmt.setString(4, incident.getShootings().name());
 			insertStmt.setTimestamp(5, new Timestamp(incident.getOccuredOnDate().getTime()));
 			insertStmt.setString(6, incident.getDayOfWeek());
 			insertStmt.setInt(7, incident.getHour());
-			insertStmt.setString(8, incident.getUcr().name());
+			insertStmt.setString(8, incident.getUcRs().name());
 			insertStmt.setString(9, incident.getAddress().getLocation());
 			insertStmt.executeUpdate();
-
 			resultKey = insertStmt.getGeneratedKeys();
 			int incidentId = -1;
 			if (resultKey.next()) {
@@ -58,7 +59,6 @@ public class IncidentsDao {
 				throw new SQLException("Unable to retrieve auto-generated key.");
 			}
 			incident.setIncidentId(incidentId);
-
 			return incident;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,9 +146,9 @@ public class IncidentsDao {
 
 	public List<Incidents> getIncidentByOffenceCode(int offenceCode) throws SQLException {
 		List<Incidents> incidentsList = new ArrayList<Incidents>();
-		String selectIncidents = "SELECT IncidentId,OffenseCode,District,ReportingArea,Shooting,OccuredOnDate,"
+		String selectIncidents = "SELECT IncidentId,Incidents.OffenseCode,District,ReportingArea,Shooting,OccuredOnDate,"
 				+ "DayOfWeek,Hours,UCR,Location " + "FROM Incidents INNER JOIN Offense "
-				+ "  ON Incidents.OffenseCode = Offense.OffenseCode " + "WHERE Incidents.offenceCode=?;";
+				+ "  ON Incidents.OffenseCode = Offense.OffenseCode " + "WHERE Incidents.offenseCode=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
 		ResultSet results = null;
@@ -196,7 +196,7 @@ public class IncidentsDao {
 	public List<Incidents> getIncidentByLocation(String location) throws SQLException {
 		List<Incidents> incidentsList = new ArrayList<Incidents>();
 		String selectIncidents = "SELECT IncidentId,OffenseCode,District,ReportingArea,Shooting,OccuredOnDate,"
-				+ "DayOfWeek,Hours,UCR,Location " + "FROM Incidents INNER JOIN Address "
+				+ "DayOfWeek,Hours,UCR,Incidents.Location " + "FROM Incidents INNER JOIN Address "
 				+ "  ON Incidents.Location = Address.Location " + "WHERE Incidents.Location=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;

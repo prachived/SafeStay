@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import SafeStay.model.Administrators;
 import SafeStay.model.Incidents;
 import SafeStay.model.Maintains;
-import SafeStay.model.Users;
 
 public class MaintainsDao {
 
@@ -36,9 +37,9 @@ public class MaintainsDao {
 		try {
 			connection = connectionManager.getConnection();
 			insertStmt = connection.prepareStatement(insertMaintain);
-			insertStmt.setString(1, maintain.getUsers().getUserName());
+			insertStmt.setString(1, maintain.getAdministrators().getUserName());
 			insertStmt.setInt(2, maintain.getIncidents().getIncidentId());
-			insertStmt.setTimestamp(1, maintain.getCreated());
+			insertStmt.setTimestamp(3, maintain.getCreated());
 
 			insertStmt.executeUpdate();
 			return maintain;
@@ -69,14 +70,14 @@ public class MaintainsDao {
 			selectStmt = connection.prepareStatement(selectMaintains);
 			selectStmt.setString(1, userName);
 			results = selectStmt.executeQuery();
-			UsersDao usersDao = UsersDao.getInstance();
+			AdministratorsDao administratorsDao = AdministratorsDao.getInstance();
 			IncidentsDao incidentsDao = IncidentsDao.getInstance();
 
 			while (results.next()) {
 				String resultUserName = results.getString("UserName");
 				int resultIncidentId = results.getInt("IncidentId");
 				Timestamp resultCreated = results.getTimestamp("Created");
-				Users resultUser = usersDao.getUserByUserName(resultUserName);
+				Administrators resultUser = administratorsDao.getAdministratorByUserName(resultUserName);
 				Incidents resultIncidents = incidentsDao.getIncidentByIncidentId(resultIncidentId);
 				Maintains maintains = new Maintains(resultUser, resultIncidents, resultCreated);
 				maintainsList.add(maintains);
@@ -106,7 +107,7 @@ public class MaintainsDao {
 		try {
 			connection = connectionManager.getConnection();
 			deleteStmt = connection.prepareStatement(deleteMaintain);
-			deleteStmt.setString(1, maintain.getUsers().getUserName());
+			deleteStmt.setString(1, maintain.getAdministrators().getUserName());
 			deleteStmt.executeUpdate();
 			return null;
 		} catch (SQLException e) {
