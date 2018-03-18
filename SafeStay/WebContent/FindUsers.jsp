@@ -52,6 +52,7 @@
 				<td><fmt:formatDate value="${endUsers.getDateOfBirth()}"
 						pattern="yyyy-MM-dd" /></td>
 				<td><a href="userdelete?username=<c:out value="${endUsers.getUserName()}"/>">Delete</a></td>
+				<td><a href="userreview?username=<c:out value="${endUsers.getUserName()}"/>">Reviews</a></td>
 			</tr>
 <%-- 		</c:forEach> --%>
 	</table>
