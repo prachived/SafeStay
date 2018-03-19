@@ -81,7 +81,7 @@ public class Inserter {
 			EndUsers endUsers1 = new EndUsers("grishma", "grishma", "Grishma", "Thakkar", 23, "thakkar.g@husky.neu.edu",
 					"2384729385", date);
 			endUsers1 = endUsersDao.create(endUsers1);
-			endUsers1 = endUsersDao.delete(endUsers1);
+			endUsers1 = endUsersDao.delete(endUsers1.getUserName());
 
 			// Test Administrators
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -95,7 +95,7 @@ public class Inserter {
 			Administrators administrators1 = new Administrators("kartik", "kartik", "Kartik", "Dave", 23,
 					"dave.k@husky.neu.edu", "2384729385", timestamp);
 			administrators1 = administratorsDao.create(administrators1);
-			administrators1 = administratorsDao.delete(administrators1);
+			administrators1 = administratorsDao.delete(administrators1.getUserName());
 
 			// Test Offense
 			OffenseDao offenseDao = OffenseDao.getInstance();

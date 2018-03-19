@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import SafeStay.model.*;
 
-public class EndUsersDao extends UsersDao{
+public class EndUsersDao extends UsersDao {
 	protected ConnectionManager connectionManager;
 	// Single pattern: instantiation is limited to one object.
 	private static EndUsersDao instance = null;
@@ -94,15 +94,16 @@ public class EndUsersDao extends UsersDao{
 		return null;
 	}
 
-	public EndUsers delete(EndUsers user) throws SQLException {
+	public EndUsers delete(String username) throws SQLException {
 		String deleteUser = "DELETE FROM EndUsers WHERE UserName=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
 		try {
 			connection = connectionManager.getConnection();
 			deleteStmt = connection.prepareStatement(deleteUser);
-			deleteStmt.setString(1, user.getUserName());
+			deleteStmt.setString(1, username);
 			deleteStmt.executeUpdate();
+			EndUsers user = new EndUsers(username);
 			super.delete(user);
 			// Return null so the caller can no longer operate on the Persons instance.
 			return null;

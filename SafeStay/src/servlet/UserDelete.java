@@ -51,7 +51,7 @@ public class UserDelete extends HttpServlet {
         	// Delete the BlogUser.
 	        EndUsers endUser = new EndUsers(userName);
 	        try {
-	        	endUser = endUsersDao.delete(endUser);
+	        	endUser = endUsersDao.delete(userName);
 	        	// Update the message.
 		        if (endUser == null) {
 		            messages.put("title", "Successfully deleted " + userName);

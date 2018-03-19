@@ -97,8 +97,6 @@ public class UsersDao {
 		}
 		return null;
 	}
-	
-	
 
 	public Users delete(Users user) throws SQLException {
 		String deleteUser = "DELETE FROM Users WHERE UserName=?;";

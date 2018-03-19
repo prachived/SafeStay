@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import SafeStay.model.*;
 
@@ -95,17 +98,62 @@ public class AdministratorsDao extends UsersDao {
 		}
 		return null;
 	}
+	
+	 public List<Administrators> getAllUsers() throws SQLException {
+	        List<Administrators> users = new ArrayList<Administrators>();
+	        String selectUser = "SELECT * FROM Administrators;";
 
-	public Administrators delete(Administrators admin) throws SQLException {
+			Connection connection = null;
+			PreparedStatement selectStmt = null;
+			ResultSet results = null;
+			try {
+				connection = connectionManager.getConnection();
+				selectStmt = connection.prepareStatement(selectUser);
+//				selectStmt.setString(1, userName);
+				results = selectStmt.executeQuery();
+				if (results.next()) {
+					String resultUserName = results.getString("UserName");
+					String resultpassword = results.getString("UserPassword");
+					String resultFirstName = results.getString("FirstName");
+					String resultLastName = results.getString("LastName");
+					int resultAge = results.getInt("Age");
+					String resultEmail = results.getString("Email");
+					String resultPhone = results.getString("Phone");
+					Timestamp resultLastlLogin = results.getTimestamp("LastLogin");
+					Administrators admin = new Administrators(resultUserName, resultpassword, resultFirstName,
+							resultLastName, resultAge, resultEmail, resultPhone, resultLastlLogin);
+					users.add(admin);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw e;
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+				if (selectStmt != null) {
+					selectStmt.close();
+				}
+				if (results != null) {
+					results.close();
+				}
+			}
+			return users;
+		}
+		
+
+	
+
+	public Administrators delete(String username) throws SQLException {
 		String deleteUser = "DELETE FROM Administrators WHERE UserName=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
 		try {
 			connection = connectionManager.getConnection();
 			deleteStmt = connection.prepareStatement(deleteUser);
-			deleteStmt.setString(1, admin.getUserName());
+			deleteStmt.setString(1, username);
 			deleteStmt.executeUpdate();
-
+			Administrators admin = new Administrators(username);
 			super.delete(admin);
 			return null;
 		} catch (SQLException e) {

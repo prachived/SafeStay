@@ -15,7 +15,13 @@ public class Administrators extends Users {
 		this.userName = userName;
 	}
 
-	//getters and setters to access the data members
+	public Administrators(String username2) {
+		super(username2);
+	}
+	
+	
+
+	// getters and setters to access the data members
 	public Timestamp getLastLogin() {
 		return lastLogin;
 	}
@@ -31,7 +37,5 @@ public class Administrators extends Users {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
-	
+
 }
