@@ -104,7 +104,7 @@ public class EndUsersDao extends UsersDao {
 			deleteStmt.setString(1, username);
 			deleteStmt.executeUpdate();
 			EndUsers user = new EndUsers(username);
-			super.delete(user);
+			super.delete(username);
 			// Return null so the caller can no longer operate on the Persons instance.
 			return null;
 		} catch (SQLException e) {

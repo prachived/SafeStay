@@ -8,22 +8,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Deleted a Review</title>
+<title>Update Content</title>
 </head>
 <body>
-	<h1>${messages.title}</h1>
-	<form action="deletereview" method="post">
+	<h1>Update Review</h1>
+	<form action="reviewupdate" method="post">
+		
 		<p>
-			<div <c:if test="${messages.disableSubmit}">style="display:none"</c:if>>
-				<label for="reviewid">ReviewID</label>
-				<input id="reviewid" name="reviewid" value="${fn:escapeXml(param.reviewid)}">
-			</div>
+			<label for="reviewid">Review Id</label>
+			<input id="reviewid" name="reviewid" value="${fn:escapeXml(param.reviewid)}">
+		</p>
+		
+		<p>
+			<label for="content">New Content</label>
+			<input id="content" name="content" value="">
 		</p>
 		<p>
-			<span id="submitButton" <c:if test="${messages.disableSubmit}">style="display:none"</c:if>>
 			<input type="submit">
-			</span>
 		</p>
 	</form>
+	<br/><br/>
+	<p>
+		<span id="successMessage"><b>${messages.success}</b></span>
+	</p>
 </body>
 </html>

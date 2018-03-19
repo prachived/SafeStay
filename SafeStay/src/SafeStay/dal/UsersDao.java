@@ -98,14 +98,14 @@ public class UsersDao {
 		return null;
 	}
 
-	public Users delete(Users user) throws SQLException {
+	public Users delete(String username) throws SQLException {
 		String deleteUser = "DELETE FROM Users WHERE UserName=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
 		try {
 			connection = connectionManager.getConnection();
 			deleteStmt = connection.prepareStatement(deleteUser);
-			deleteStmt.setString(1, user.getUserName());
+			deleteStmt.setString(1, username);
 			deleteStmt.executeUpdate();
 
 			// Return null so the caller can no longer operate on the Persons instance.

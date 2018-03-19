@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import SafeStay.dal.*;
 import SafeStay.model.*;
 
-@WebServlet("/deletereview")
-public class DeleteReview extends HttpServlet {
+@WebServlet("/deleterecommendation")
+public class DeleteRecommendation extends HttpServlet {
 	
-	protected ReviewsDao reviewsDao;
+	protected RecommendationsDao recommendationsDao;
 	
 	@Override
 	public void init() throws ServletException {
-		reviewsDao = ReviewsDao.getInstance();
+		recommendationsDao = RecommendationsDao.getInstance();
 	}
 	
 	@Override
@@ -31,8 +31,8 @@ public class DeleteReview extends HttpServlet {
         Map<String, String> messages = new HashMap<String, String>();
         req.setAttribute("messages", messages);
         // Provide a title and render the JSP.
-        messages.put("title", "Delete Review");        
-        req.getRequestDispatcher("/DeleteReview.jsp").forward(req, resp);
+        messages.put("title", "Delete Recommendations");        
+        req.getRequestDispatcher("/DeleteRecommendation.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -43,27 +43,23 @@ public class DeleteReview extends HttpServlet {
         req.setAttribute("messages", messages);
 
         // Retrieve and validate name.
-        String reviewid = req.getParameter("reviewid");
-        if (reviewid == null || reviewid.trim().isEmpty()) {
-            messages.put("title", "Invalid reviewid");
-            messages.put("disableSubmit", "true");
-        } else {
-	        Reviews review = new Reviews(Integer.parseInt(reviewid));
-	        try {
-	        	review = reviewsDao.delete(Integer.parseInt(reviewid));
-
-	        	// Update the message.
-		        if (review == null) {
-		            messages.put("title", "Successfully deleted " + reviewid);
-		            messages.put("disableSubmit", "true");
-		        } else {
-		        	messages.put("title", "Failed to delete " + reviewid);
-		        	messages.put("disableSubmit", "false");
-		        }
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new IOException(e);
+        String recommendationId = req.getParameter("RecommendationId");
+        
+        Recommendations recommendation = new Recommendations(Integer.parseInt(recommendationId));
+        try {
+        	recommendation = recommendationsDao.delete(Integer.parseInt(recommendationId));
+        	
+        	// Update the message.
+	        if (recommendation == null) {
+	            messages.put("title", "Successfully deleted ");
+	            //messages.put("disableSubmit", "true");
+	        } else {
+	        	messages.put("title", "Failed to delete ");
+	        	//messages.put("disableSubmit", "false");
 	        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
         }
         
         /*if (reviewId == null || reviewId.trim().isEmpty()) {
@@ -73,7 +69,7 @@ public class DeleteReview extends HttpServlet {
 	        
         }*/
         
-        req.getRequestDispatcher("/DeleteReview.jsp").forward(req, resp);
+        req.getRequestDispatcher("/DeleteRecommendation.jsp").forward(req, resp);
     }
 
 }
