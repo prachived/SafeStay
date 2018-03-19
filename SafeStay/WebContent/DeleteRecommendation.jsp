@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Deleted a Review</title>
+<title>Deleted a Recommendation</title>
 </head>
 <body>
 	<h1>${messages.title}</h1>

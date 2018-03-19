@@ -8,11 +8,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Deleted a Review</title>
+<title>Update Content</title>
 </head>
 <body>
-	<h1>${messages.title}</h1>
+	<h1>Update Review</h1>
+	<form action="reviewupdate" method="post">
+		
+		<p>
+			<label for="content">New Content</label>
+			<input id="content" name="content" value="">
+		</p>
+		<p>
+			<input type="submit">
+		</p>
+	</form>
 	<br/><br/>
-	
+	<p>
+		<span id="successMessage"><b>${messages.success}</b></span>
+	</p>
 </body>
 </html>

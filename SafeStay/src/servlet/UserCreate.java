@@ -1,4 +1,4 @@
-package servlet;
+package SafeStay.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
