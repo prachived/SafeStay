@@ -227,62 +227,62 @@ public class Inserter {
 
 			}
 
-//			// Test Weekday with most incidents - query 5
-//			System.out.println("Weekday with most incidents is : ");
-//			MostIncidentsWeekday mostday = MostIncidentsWeekday.getInstance();
-//			System.out.println(mostday.getWeekdayMostIncidents());
-//
-//			// Test most offense for location - query2
-//
-//			System.out.println("Most offense in the location : ");
-//			MostOffenseForLocation mostOffense = MostOffenseForLocation.getInstance();
-//			System.out.println(mostOffense.getOffenseCodeForLocation());
-//
-//			// Test Shooting Percentages - query 6
-//			System.out.println("Ratio of shooting incidents to the overall incidents that occur in a system");
-//			RatioShootingPerLocation ratioshooting = RatioShootingPerLocation.getInstance();
-//
-//			System.out.println(ratioshooting.getRatioshootingIncidents().size());
-//			for (ShootingLocation s : ratioshooting.getRatioshootingIncidents()) {
-//				// System.out.println(x);
-//				System.out.println(s.getLocation() + " : " + s.getRatio());
-//			}
-//
-//			// Test RatioReviewRecommendations
-//			Reviews reviews2 = new Reviews("Safe area", endUsers, address);
-//			reviews2 = reviewsDao.create(reviews2);
-//			Recommendations recommendations2 = new Recommendations(3.0, 3.0, 3.0, endUsers, address);
-//			recommendations2 = recommendationsDao.create(recommendations2);
-//			RatioReviewRecommendation k = RatioReviewRecommendation.getInstance();
-//			System.out.println("The ratio of of total number of recommendations to reviews for Boston are: "
-//					+ k.getRatioOfRecommendationAndReview());
-//
-//			// Test top 20 safest Locations to live:
-//			System.out.println("Top 20 safe locations are:");
-//			SafestAreasTop20 saf = SafestAreasTop20.getInstance();
-//			int kk = 1;
-//			for (String m : saf.getTop20SafestAreas()) {
-//				System.out.println(kk + ": " + m);
-//				++kk;
-//			}
-//
-//			// Test top 20 unsafe Streets to live:
-//			System.out.println("Top 20 unsafe streets are:");
-//			UnsafeStreets unsa = UnsafeStreets.getInstance();
-//			int kkm = 1;
-//			for (String m : unsa.getUnsafeStreets()) {
-//				System.out.println(kkm + ": " + m);
-//				++kkm;
-//			}
-//
-//			// Test safety index of all the streets
-//			System.out.println("Safety index of streets are:");
-//			SafetyIndex si = SafetyIndex.getInstance();
-//			int kkmm = 1;
-//			for (String m : si.getSafetyIndex()) {
-//				System.out.println(kkmm + ": " + m);
-//				++kkm;
-//			}
+			// Test Weekday with most incidents - query 5
+			System.out.println("Weekday with most incidents is : ");
+			MostIncidentsWeekday mostday = MostIncidentsWeekday.getInstance();
+			System.out.println(mostday.getWeekdayMostIncidents());
+
+			// Test most offense for location - query2
+
+			System.out.println("Most offense in the location : ");
+			MostOffenseForLocation mostOffense = MostOffenseForLocation.getInstance();
+			System.out.println(mostOffense.getOffenseCodeForLocation());
+
+			// Test Shooting Percentages - query 6
+			System.out.println("Ratio of shooting incidents to the overall incidents that occur in a system");
+			RatioShootingPerLocation ratioshooting = RatioShootingPerLocation.getInstance();
+
+			System.out.println(ratioshooting.getRatioshootingIncidents().size());
+			for (ShootingLocation s : ratioshooting.getRatioshootingIncidents()) {
+				// System.out.println(x);
+				System.out.println(s.getLocation() + " : " + s.getRatio());
+			}
+
+			// Test RatioReviewRecommendations
+			Reviews reviews2 = new Reviews("Safe area", endUsers, address);
+			reviews2 = reviewsDao.create(reviews2);
+			Recommendations recommendations2 = new Recommendations(3.0, 3.0, 3.0, endUsers, address);
+			recommendations2 = recommendationsDao.create(recommendations2);
+			RatioReviewRecommendation k = RatioReviewRecommendation.getInstance();
+			System.out.println("The ratio of of total number of recommendations to reviews for Boston are: "
+					+ k.getRatioOfRecommendationAndReview());
+
+			// Test top 20 safest Locations to live:
+			System.out.println("Top 20 safe locations are:");
+			SafestAreasTop20 saf = SafestAreasTop20.getInstance();
+			int kk = 1;
+			for (String m : saf.getTop20SafestAreas()) {
+				System.out.println(kk + ": " + m);
+				++kk;
+			}
+
+			// Test top 20 unsafe Streets to live:
+			System.out.println("Top 20 unsafe streets are:");
+			UnsafeStreets unsa = UnsafeStreets.getInstance();
+			int kkm = 1;
+			for (String m : unsa.getUnsafeStreets()) {
+				System.out.println(kkm + ": " + m);
+				++kkm;
+			}
+
+			// Test safety index of all the streets
+			System.out.println("Safety index of streets are:");
+			SafetyIndex si = SafetyIndex.getInstance();
+			int kkmm = 1;
+			for (String m : si.getSafetyIndex()) {
+				System.out.println(kkmm + ": " + m);
+				++kkm;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
