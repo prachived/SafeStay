@@ -5,13 +5,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class AddressDao {
+	private static final Character INFILE_FIELD_SEPARATION_CHAR = ',';
+	private static final Character INFILE_ENCLOSED_CHAR = '"';
 	protected ConnectionManager connectionManager;
 
 	// Single pattern: instantiation is limited to one object.
 
 	private static AddressDao instance = null;
+
 	protected AddressDao() {
 		connectionManager = new ConnectionManager();
 	}
@@ -42,8 +46,7 @@ public class AddressDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
-		}
-		finally {
+		} finally {
 			if (connection != null) {
 				connection.close();
 			}
@@ -70,7 +73,7 @@ public class AddressDao {
 			// You can iterate the result set (although the example below only retrieves
 			// the first record). The cursor is initially positioned before the row.
 			// Furthermore, you can retrieve fields by name and by type.
-			if (results.next()) {
+			while (results.next()) {
 				String rlocation = results.getString("Location");
 				String rstreet = results.getString("Street");
 				String rlatitude = results.getString("Latitude");
@@ -94,6 +97,7 @@ public class AddressDao {
 		}
 		return null;
 	}
+
 	public Address delete(Address address) throws SQLException {
 		String delAddress = "DELETE FROM Address WHERE location=?;";
 		Connection connection = null;
@@ -118,6 +122,24 @@ public class AddressDao {
 			if (deleteStmt != null) {
 				deleteStmt.close();
 			}
+		}
+	}
+	
+	public void importData(String dataFilePath, String tableName) {
+		String sql = "LOAD DATA LOCAL INFILE '" + dataFilePath + "' into table " + tableName + " FIELDS TERMINATED BY '"
+				+ INFILE_FIELD_SEPARATION_CHAR + "' " + "ENCLOSED BY '" + INFILE_ENCLOSED_CHAR + "' "
+				+ "LINES TERMINATED BY '" + System.lineSeparator() + "' " + "IGNORE 1 LINES;";
+
+		Connection conn = null;
+		Statement statement = null;
+		try {
+			conn = connectionManager.getConnection();
+			conn.setAutoCommit(true);
+			statement = conn.createStatement();
+			statement.executeUpdate(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

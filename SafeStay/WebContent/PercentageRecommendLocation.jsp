@@ -8,28 +8,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Delete a Recommendation</title>
+<title>Find the most unsafe hour</title>
 </head>
 <body>
-	<h1>${messages.title}</h1>
-	<form action="deleterecommendation" method="post">
+	<form action="findpercentage" method="post">
+		<h1>Find Percentage by Location</h1>
 		<p>
-		<div
-			<c:if test="${messages.disableSubmit}">style="display:none"</c:if>>
-			<label for="recommendationid">RecommendationId</label> <input
-				id="recommendationid" name="recommendationid"
-				value="${fn:escapeXml(param.recommendationid)}">
-		</div>
+			<label for="location">Location</label> <input id="location"
+				name="location" value="${fn:escapeXml(param.location)}">
 		</p>
 		<p>
-			<span id="submitButton"
-				<c:if test="${messages.disableSubmit}">style="display:none"</c:if>>
-				<input type="submit">
-			</span>
+			<input type="submit"> <br /> <br /> <br /> 
 		</p>
 	</form>
 	<br />
-	<br />
-
+	<h1>Percentage</h1>
+	<c:out value="${prl}"> Here</c:out>
 </body>
 </html>

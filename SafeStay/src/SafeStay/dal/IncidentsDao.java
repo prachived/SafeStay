@@ -15,6 +15,8 @@ import SafeStay.model.Incidents.Shootings;
 import SafeStay.model.Incidents.UCRs;
 
 public class IncidentsDao {
+	private static final Character INFILE_FIELD_SEPARATION_CHAR = ',';
+	private static final Character INFILE_ENCLOSED_CHAR = '"';
 	protected ConnectionManager connectionManager;
 
 	private static IncidentsDao instance = null;
@@ -108,7 +110,7 @@ public class IncidentsDao {
 			results = selectStmt.executeQuery();
 			OffenseDao offensesDao = OffenseDao.getInstance();
 			AddressDao addressDao = AddressDao.getInstance();
-			if (results.next()) {
+			while (results.next()) {
 				int resultincidentId = results.getInt("IncidentId");
 				int resultOffensecode = results.getInt("OffenseCode");
 				String resultDistrict = results.getString("District");
@@ -239,6 +241,25 @@ public class IncidentsDao {
 			}
 		}
 		return incidentsList;
+	}
+
+	public void importData(String dataFilePath, String tableName) {
+		String sql = "LOAD DATA LOCAL INFILE '" + dataFilePath + "' into table " + tableName + " FIELDS TERMINATED BY '"
+				+ INFILE_FIELD_SEPARATION_CHAR + "' " + "ENCLOSED BY '" + INFILE_ENCLOSED_CHAR + "' "
+				+ "LINES TERMINATED BY '" + System.lineSeparator() + "' "
+				+ "IGNORE 1 LINES (OffenseCode,District,ReportingArea,Shooting,OccuredOnDate,DayOfWeek,Hours,UCR,Location);";
+
+		Connection conn = null;
+		Statement statement = null;
+		try {
+			conn = connectionManager.getConnection();
+			conn.setAutoCommit(true);
+			statement = conn.createStatement();
+			statement.executeUpdate(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
