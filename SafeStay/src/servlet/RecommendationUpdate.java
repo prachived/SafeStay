@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import SafeStay.dal.*;
 import SafeStay.model.*;
 
-@WebServlet("/recommendationupdate")
+@WebServlet("/updaterecommendation")
 public class RecommendationUpdate extends HttpServlet {
 
 	protected RecommendationsDao recommendationsDao;
@@ -58,8 +58,9 @@ public class RecommendationUpdate extends HttpServlet {
 		req.setAttribute("messages", messages);
 
 		// Retrieve user and validate.
-		String recommendationId = req.getParameter("recommendationId");
+		String recommendationId = req.getParameter("recommendationid");
 		try {
+			System.out.println(recommendationId);
 			Recommendations recommendations = recommendationsDao
 					.getRecommendationById(Integer.parseInt(recommendationId));
 			if (recommendations == null) {

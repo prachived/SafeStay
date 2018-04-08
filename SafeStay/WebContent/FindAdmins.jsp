@@ -38,8 +38,8 @@
 			<th>Email</th>
 			<th>Phone</th>
 			<th>DeleteAdmin</th>
+			<th>AddIncident</th>
 		</tr>
-		<%-- 		<c:forEach items="${endUsers}" var="endUser"> --%>
 		<tr>
 			<td><c:out value="${admins.getUserName()}" /></td>
 			<td><c:out value="${admins.getPassword()}" /></td>
@@ -50,8 +50,9 @@
 			<td><c:out value="${admins.getPhone()}" /></td>
 			<td><a
 				href="admindelete?username=<c:out value="${admins.getUserName()}"/>">Delete</a></td>
+			<td><a
+				href="incidentcreate?username=<c:out value="${admins.getUserName()}"/>">AddIncident</a></td>
 		</tr>
-		<%-- 		</c:forEach> --%>
 	</table>
 </body>
 </html>

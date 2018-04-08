@@ -41,23 +41,30 @@
 			<th>DeleteUser</th>
 			<th>Reviews</th>
 			<th>Recommendations</th>
+			<th>Add Address history</th>
 		</tr>
-<%-- 		<c:forEach items="${endUsers}" var="endUser"> --%>
-			<tr>
-				<td><c:out value="${endUsers.getUserName()}" /></td>
-				<td><c:out value="${endUsers.getPassword()}" /></td>
-				<td><c:out value="${endUsers.getFirstName()}" /></td>
-				<td><c:out value="${endUsers.getLastName()}" /></td>
-				<td><c:out value="${endUsers.getAge()}" /></td>
-				<td><c:out value="${endUsers.getEmail()}" /></td>
-				<td><c:out value="${endUsers.getPhone()}" /></td>
-				<td><fmt:formatDate value="${endUsers.getDateOfBirth()}"
-						pattern="yyyy-MM-dd" /></td>
-				<td><a href="userdelete?username=<c:out value="${endUsers.getUserName()}"/>">Delete</a></td>
-				<td><a href="userreview?username=<c:out value="${endUsers.getUserName()}"/>">Reviews</a></td>
-				<td><a href="userrecommendations?username=<c:out value="${endUsers.getUserName()}"/>">Recommendations</a></td>
-			</tr>
-<%-- 		</c:forEach> --%>
+		<%-- 		<c:forEach items="${endUsers}" var="endUser"> --%>
+		<tr>
+			<td><c:out value="${endUsers.getUserName()}" /></td>
+			<td><c:out value="${endUsers.getPassword()}" /></td>
+			<td><c:out value="${endUsers.getFirstName()}" /></td>
+			<td><c:out value="${endUsers.getLastName()}" /></td>
+			<td><c:out value="${endUsers.getAge()}" /></td>
+			<td><c:out value="${endUsers.getEmail()}" /></td>
+			<td><c:out value="${endUsers.getPhone()}" /></td>
+			<td><fmt:formatDate value="${endUsers.getDateOfBirth()}"
+					pattern="yyyy-MM-dd" /></td>
+			<td><a
+				href="userdelete?username=<c:out value="${endUsers.getUserName()}"/>">Delete</a></td>
+			<td><a
+				href="userreview?username=<c:out value="${endUsers.getUserName()}"/>">Reviews</a></td>
+			<td><a
+				href="userrecommendations?username=<c:out value="${endUsers.getUserName()}"/>">Recommendations</a></td>
+			<td><a
+				href="useraddresshistory?username=<c:out value = "${endusers.getUSerName()}"/>">Add
+					Address History</a></td>
+		</tr>
+		<%-- 		</c:forEach> --%>
 	</table>
 </body>
 </html>

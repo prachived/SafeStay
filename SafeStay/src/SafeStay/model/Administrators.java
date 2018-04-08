@@ -18,8 +18,6 @@ public class Administrators extends Users {
 	public Administrators(String username2) {
 		super(username2);
 	}
-	
-	
 
 	// getters and setters to access the data members
 	public Timestamp getLastLogin() {

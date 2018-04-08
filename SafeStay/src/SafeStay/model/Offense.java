@@ -33,12 +33,4 @@ public class Offense {
 		this.description = description;
 	}
 
-//	public String getCodeGroup() {
-//		return codeGroup;
-//	}
-//
-//	public void setCodeGroup(String codeGroup) {
-//		this.codeGroup = codeGroup;
-//	}
-
 }

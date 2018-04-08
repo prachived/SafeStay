@@ -67,8 +67,7 @@ public class AdminCreate extends HttpServlet {
 			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 			    Date parsedDate = dateFormat.parse(lastlogin);
 			    timestamp = new java.sql.Timestamp(parsedDate.getTime());
-			} catch(Exception e) { //this generic but you can control another types of exception
-			    // look the origin of excption 
+			} catch(Exception e) { 
 			}
 			try {
 				Administrators admin = new Administrators(userName, password, firstName, lastName, userage, email, phone, timestamp);
